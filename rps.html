@@ -6,37 +6,71 @@
     </head>
     <body>
         <script>
-            let pick = prompt("Choose!");   
-            const computerSelection = computerPlay();
-            const playerSelection = pick.toLowerCase();
+            let computerSelection = computerPlay();
+            let playerSelection = prompt("Choose your hand!").toLowerCase();
 
             function computerPlay() {
-                let randomNum = (Math.floor(Math.random)*3)
+                let randomNum = Math.floor(Math.random() * 3) 
                 if (randomNum === 0){
-                    return 'rock'
+                    return 'rock';
                 }
                 else if (randomNum === 1){
-                    return 'paper'
+                    return 'paper';
                 }
                 else if (randomNum === 2){
-                    return 'scissors'
+                    return 'scissors';
                 }
+                else    
+                    console.log('error');
+                
             }
-
-
+            console.log("Computer choose: " + computerSelection);
             function playRound(playerSelection, computerSelection) {
-                if (playerSelection === 'rock' && computerSelection === 'rock'){
-                    console.log("Tie game!");
+
+                //Get user input
+                
+                
+                //Draw game
+                if (playerSelection === 'rock' && computerSelection === 'rock' || playerSelection === 'paper' && computerSelection === 'paper' || playerSelection === 'scissors' && computerSelection === 'scissors'){
+                    return 'tie'
                 }
-                else if (playerSelection === 'rock' && computerSelection === 'paper'){
-                    console.log("You lose!");
+                //Game lost
+                else if (playerSelection === 'rock' && computerSelection === 'paper' || playerSelection === 'paper' && computerSelection === 'scissors' || playerSelection === 'scissors' && computerSelection === 'rock'){
+                    return 'lose';
                 }
-                else if (playerSelection === 'rock' && computerSelection === 'scissors'){
-                    console.log("You win!");
+                //Game won
+                else if (playerSelection === 'rock' && computerSelection === 'scissors' || playerSelection === 'paper' && computerSelection === 'rock' || playerSelection === 'scissors' && computerSelection === 'paper'){
+                    return 'win';
                 }
+                else 
+                    console.log("Somethings wrong, reload game");
             }
-        
             
+            if (playRound() === 'tie') {
+                console.log("Tie game!");
+            }
+
+            else if (playRound() === 'lose') {
+                console.log("You lose!");
+            }
+
+            else if (playround() === 'win') {
+                console.log("You win!");
+            }
+
+            function game() {
+
+                playRound(playerSelection, computerSelection);
+                
+            }
+
+            game();
+            game();
+            game();
+            game();
+            game();
+
+
         </script>
     </body>
 </html>
