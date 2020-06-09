@@ -5,9 +5,12 @@
         <title>Rock Paper Scissors</title>
     </head>
     <body>
+        <h1>Play the game in the console!</h1>
+        <h2>Play the computer! First to 3 wins</h2>
         <script>
-            let computerSelection = computerPlay();
-            let playerSelection = prompt("Choose your hand!").toLowerCase();
+            
+            let playerWin = 0;
+            let computerWin = 0;
 
             function computerPlay() {
                 let randomNum = Math.floor(Math.random() * 3) 
@@ -24,52 +27,49 @@
                     console.log('error');
                 
             }
-            console.log("Computer choose: " + computerSelection);
+            
             function playRound(playerSelection, computerSelection) {
 
-                //Get user input
-                
-                
                 //Draw game
                 if (playerSelection === 'rock' && computerSelection === 'rock' || playerSelection === 'paper' && computerSelection === 'paper' || playerSelection === 'scissors' && computerSelection === 'scissors'){
-                    return 'tie'
+                    console.log("Tie game!")
+                    return 0;
+                    
                 }
                 //Game lost
                 else if (playerSelection === 'rock' && computerSelection === 'paper' || playerSelection === 'paper' && computerSelection === 'scissors' || playerSelection === 'scissors' && computerSelection === 'rock'){
-                    return 'lose';
+                    console.log("Oh no, you lose...");
+                    ++computerWin;
+                    return 1;     
                 }
                 //Game won
                 else if (playerSelection === 'rock' && computerSelection === 'scissors' || playerSelection === 'paper' && computerSelection === 'rock' || playerSelection === 'scissors' && computerSelection === 'paper'){
-                    return 'win';
+                    console.log("YAY! You won!")
+                    ++playerWin;
+                    return 2;
                 }
                 else 
-                    console.log("Somethings wrong, reload game");
-            }
-            
-            if (playRound() === 'tie') {
-                console.log("Tie game!");
-            }
-
-            else if (playRound() === 'lose') {
-                console.log("You lose!");
-            }
-
-            else if (playround() === 'win') {
-                console.log("You win!");
+                    console.log("Somethings wrong, try again");
             }
 
             function game() {
-
-                playRound(playerSelection, computerSelection);
-                
+                let computerSelection = computerPlay();
+                let playerSelection = prompt("Choose your hand!").toLowerCase();
+                console.log("Computer choose: " + computerSelection);
+                playRound(playerSelection, computerSelection); 
             }
 
-            game();
-            game();
-            game();
-            game();
-            game();
-
+            while (computerWin < 3 && playerWin < 3) {
+                    game();
+                    console.log("Player Score: " + playerWin + " Computer Score: " + computerWin)
+                }    
+            
+            if (computerWin === 3){
+                console.log("Oh no, looks like the computer beat you. Refresh to try again")
+            }
+            else if (playerWin === 3){
+                console.log("LETS GOOOOOOOOO YOU WIN!!!!!")
+            }
 
         </script>
     </body>
